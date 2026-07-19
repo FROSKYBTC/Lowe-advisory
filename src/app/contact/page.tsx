@@ -97,6 +97,7 @@ export default function ContactPage() {
                       icon="map-pin"
                       label="Location"
                       value={site.location}
+                      href={site.mapUrl}
                     />
                     {site.social.linkedin && (
                       <ContactRow

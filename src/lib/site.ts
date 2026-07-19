@@ -33,8 +33,10 @@ export const site = {
   /** ⚙️ EDIT ME — your Cal.com / Calendly booking link (set up later). */
   bookingUrl: "https://cal.com/lowe-advisory",
 
-  /** ⚙️ EDIT ME — shown in footer / contact. City, State or "Remote / Worldwide". */
-  location: "United States · Remote & On-site",
+  /** ✅ Shown in footer + contact page. */
+  location: "1301 N Mechanic St, El Campo, TX 77437",
+  /** Google Maps link for the address above. */
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=1301+N+Mechanic+St+El+Campo+TX+77437",
 
   /** ✅ Set — phone shown publicly. tel: links use the digits-only form. */
   phone: "+1(324)888-6889",
