@@ -289,11 +289,12 @@ const screenshotReviews = [
   },
 ];
 
-// Reviews shown as text cards (verbatim words from real clients).
+// Reviews shown as text cards (verbatim words from real clients, with their photo).
 const textReviews = [
   {
     name: "Avelino R.",
     role: "Business Owner",
+    photo: "/images/avelino-r-headshot.jpg",
     quote:
       "I had an excellent experience working with this business consulting company. From the very beginning, they took the time to understand my business, my goals, and the challenges I was facing. Their professionalism, knowledge, and practical advice gave me the confidence and direction I needed to move my business forward.",
     highlight:
@@ -302,6 +303,7 @@ const textReviews = [
   {
     name: "James M.",
     role: "Business Owner",
+    photo: "/images/james-m-headshot.jpg",
     quote:
       "Working with this business consulting company has been one of the best decisions I've made for my business. From our first conversation, I could tell they genuinely cared about helping me succeed, not just offering advice. Their knowledge, professionalism, and attention to detail gave me a fresh perspective on my business.",
     highlight:
@@ -371,8 +373,14 @@ function Testimonials() {
                 )}
               </div>
               <figcaption className="mt-6 flex items-center gap-3 border-t border-navy-800 pt-4">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 font-serif text-sm font-semibold text-navy-950">
-                  {r.name.charAt(0)}
+                <span className="relative h-12 w-12 flex-none overflow-hidden rounded-full ring-2 ring-amber-400/60">
+                  <Image
+                    src={r.photo}
+                    alt={`${r.name}, verified client`}
+                    fill
+                    sizes="3rem"
+                    className="object-cover object-center"
+                  />
                 </span>
                 <div>
                   <div className="text-sm font-medium text-white">{r.name}</div>
