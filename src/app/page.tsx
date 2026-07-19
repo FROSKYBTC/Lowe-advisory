@@ -299,6 +299,14 @@ const textReviews = [
     highlight:
       "They didn't just offer generic solutions — they provided strategies tailored to my business that made a real difference.",
   },
+  {
+    name: "James M.",
+    role: "Business Owner",
+    quote:
+      "Working with this business consulting company has been one of the best decisions I've made for my business. From our first conversation, I could tell they genuinely cared about helping me succeed, not just offering advice. Their knowledge, professionalism, and attention to detail gave me a fresh perspective on my business.",
+    highlight:
+      "They helped me identify areas for growth, improve my planning, and make more confident business decisions.",
+  },
 ];
 
 function Testimonials() {
@@ -312,8 +320,8 @@ function Testimonials() {
           dark
         />
 
-        {/* Screenshot reviews */}
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Reviews — screenshot + text, 2×2 grid on desktop */}
+        <div className="mt-14 grid gap-6 sm:grid-cols-2">
           {screenshotReviews.map((r) => (
             <figure
               key={r.src}
