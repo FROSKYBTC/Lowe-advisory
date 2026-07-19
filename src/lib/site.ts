@@ -48,12 +48,11 @@ export const site = {
     instagram: "",
   },
 
-  /** ⚙️ EDIT ME — the principal/founder. Who runs the firm. */
+  /** ✅ Founder — the principal who runs the firm. */
   founder: {
-    name: "[Your Name]", // ⚙️ EDIT ME
+    name: "Anastasia Lowe",
     title: "Founder & Principal Advisor",
-    // ⚙️ EDIT ME — replace with your real bio (2-3 short paragraphs).
-    bio: `I'm [Your Name], founder of Lowe Advisory. For over a decade I've helped small and mid-sized business owners turn complexity into clarity — cutting through the noise to find the few decisions that actually move the needle.
+    bio: `I'm Anastasia Lowe, founder of Lowe Advisory. For over a decade I've helped small and mid-sized business owners turn complexity into clarity — cutting through the noise to find the few decisions that actually move the needle.
 
 My work sits at the intersection of strategy and operations: where to compete, how to grow, what to fix first. I've guided founders through fundraising readiness, built operating plans from scratch, streamlined delivery, and helped leadership teams get unstuck at critical inflection points.
 

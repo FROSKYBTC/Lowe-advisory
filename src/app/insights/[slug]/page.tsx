@@ -110,7 +110,7 @@ export default async function PostPage({
             {/* Author card */}
             <div className="mt-14 flex items-center gap-4 rounded-xl border border-ink-100 bg-ink-50 p-5">
               <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-navy-900 font-serif text-lg font-semibold text-amber-400">
-                LA
+                AL
               </span>
               <div>
                 <p className="font-medium text-navy-950">{site.founder.name}</p>
