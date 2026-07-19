@@ -10,7 +10,6 @@ import {
   processSteps,
   valueProps,
   stats,
-  testimonials,
 } from "@/lib/site";
 
 export default function HomePage() {
@@ -275,21 +274,30 @@ function Process() {
 }
 
 /* ───────────────────── Testimonials ───────────────────── */
-const clientReviews = [
+
+// Reviews shown as screenshots (real photos of actual reviews).
+const screenshotReviews = [
   {
     src: "/images/client-review-isla-hayes.jpg",
     alt: "Review from Isla Hayes, client of Lowe Advisory",
     name: "Isla Hayes",
   },
   {
-    src: "/images/client-review-jane.j.jpeg",
-    alt: "Review from Jane J., client of Lowe Advisory",
-    name: "Jane J.",
-  },
-  {
     src: "/images/client-review-richard-kensington.jpg",
     alt: "Review from Richard Kensington, client of Lowe Advisory",
     name: "Richard Kensington",
+  },
+];
+
+// Reviews shown as text cards (verbatim words from real clients).
+const textReviews = [
+  {
+    name: "Avelino R.",
+    role: "Business Owner",
+    quote:
+      "I had an excellent experience working with this business consulting company. From the very beginning, they took the time to understand my business, my goals, and the challenges I was facing. Their professionalism, knowledge, and practical advice gave me the confidence and direction I needed to move my business forward.",
+    highlight:
+      "They didn't just offer generic solutions — they provided strategies tailored to my business that made a real difference.",
   },
 ];
 
@@ -300,11 +308,13 @@ function Testimonials() {
         <SectionHeading
           eyebrow="What clients say"
           title="Real words from real clients"
-          subtitle="Screenshots of actual reviews from people Lowe Advisory has worked with."
+          subtitle="Authentic reviews from business owners Lowe Advisory has worked with."
           dark
         />
+
+        {/* Screenshot reviews */}
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {clientReviews.map((r) => (
+          {screenshotReviews.map((r) => (
             <figure
               key={r.src}
               className="group flex flex-col overflow-hidden rounded-xl border border-navy-800 bg-navy-900 shadow-sm transition-all hover:-translate-y-0.5 hover:border-amber-400/40 hover:shadow-xl"
@@ -325,19 +335,41 @@ function Testimonials() {
               </figcaption>
             </figure>
           ))}
-        </div>
 
-        {/* Supporting text quotes */}
-        <div className="mt-10 grid gap-5 border-t border-navy-800 pt-10 sm:grid-cols-3">
-          {testimonials.map((t) => (
-            <figure key={t.name} className="flex flex-col">
-              <Icon name="quote" size={22} className="text-amber-400/80" />
-              <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-navy-300">
-                {t.quote}
-              </blockquote>
-              <figcaption className="mt-4 text-xs text-navy-500">
-                <span className="font-medium text-navy-200">{t.name}</span>
-                <span className="text-navy-500"> · {t.role}</span>
+          {/* Avelino R. — text review card */}
+          {textReviews.map((r) => (
+            <figure
+              key={r.name}
+              className="flex flex-col justify-between rounded-xl border border-navy-800 bg-gradient-to-br from-navy-900 to-navy-950 p-7 shadow-sm transition-all hover:-translate-y-0.5 hover:border-amber-400/40 hover:shadow-xl"
+            >
+              <div>
+                <div className="flex items-center justify-between">
+                  <Icon name="quote" size={28} className="text-amber-400" />
+                  <div className="flex gap-0.5" aria-label="5 out of 5 stars">
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#d9a23e" aria-hidden="true">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+                <blockquote className="mt-4 text-sm leading-relaxed text-navy-200">
+                  {r.quote}
+                </blockquote>
+                {r.highlight && (
+                  <blockquote className="mt-3 border-l-2 border-amber-400 pl-3 text-sm font-medium italic leading-relaxed text-amber-100">
+                    {r.highlight}
+                  </blockquote>
+                )}
+              </div>
+              <figcaption className="mt-6 flex items-center gap-3 border-t border-navy-800 pt-4">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 font-serif text-sm font-semibold text-navy-950">
+                  {r.name.charAt(0)}
+                </span>
+                <div>
+                  <div className="text-sm font-medium text-white">{r.name}</div>
+                  <div className="text-xs text-navy-400">{r.role}</div>
+                </div>
               </figcaption>
             </figure>
           ))}
