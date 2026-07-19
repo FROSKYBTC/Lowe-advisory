@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
+import { LogoMark } from "@/components/ui/Logo";
 import { footerNav } from "@/lib/nav";
 import { site } from "@/lib/site";
 
@@ -17,24 +18,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-md bg-white/10 text-amber-400">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M4 20V6l8-3 8 3v14"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M9 20v-6h6v6"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
+              <LogoMark size={34} variant="light" />
               <span className="font-serif text-lg font-semibold text-white">
                 Lowe Advisory, <span className="text-amber-400">LLC</span>
               </span>

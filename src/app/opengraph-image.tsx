@@ -51,20 +51,26 @@ export default async function OGImage() {
               border: "1px solid rgba(255,255,255,0.15)",
             }}
           >
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+            <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
               <path
-                d="M4 20V6l8-3 8 3v14"
-                stroke="#d9a23e"
-                strokeWidth="2"
+                d="M12 8 L12 40 L36 40"
+                stroke="#ffffff"
+                strokeWidth="6"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
-                d="M9 20v-6h6v6"
+                d="M18 22 L27 13 L36 22"
                 stroke="#d9a23e"
-                strokeWidth="2"
+                strokeWidth="5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+              />
+              <path
+                d="M27 13 L27 30"
+                stroke="#d9a23e"
+                strokeWidth="5"
+                strokeLinecap="round"
               />
             </svg>
           </div>
