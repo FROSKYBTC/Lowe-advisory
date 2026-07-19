@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Icon, type IconName } from "@/components/ui/Icon";
@@ -17,6 +18,7 @@ export default function HomePage() {
     <>
       <Hero />
       <StatsStrip />
+      <InflectionPoints />
       <ValueProps />
       <Services />
       <Process />
@@ -38,27 +40,28 @@ function Hero() {
             "radial-gradient(60rem 30rem at 80% -10%, rgba(217,162,62,0.10), transparent 60%), radial-gradient(50rem 28rem at 0% 10%, rgba(45,78,135,0.08), transparent 55%)",
         }}
       />
-      <Container className="relative py-20 sm:py-28 lg:py-32">
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-navy-200 bg-white/70 px-4 py-1.5 text-xs font-medium text-navy-700 shadow-sm">
+      <Container className="relative py-16 sm:py-20 lg:py-28">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_.92fr] lg:gap-16">
+          <div className="max-w-3xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-navy-200 bg-white/80 px-4 py-1.5 text-xs font-medium text-navy-700 shadow-sm">
             <Icon name="sparkles" size={14} className="text-amber-500" />
             {site.tagline}
           </span>
 
-          <h1 className="mt-6 text-4xl font-semibold leading-[1.1] tracking-tight text-navy-950 sm:text-5xl lg:text-6xl">
-            Turn business complexity into{" "}
-            <span className="text-amber-500">clear, profitable action</span>
+          <h1 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-tight text-navy-950 sm:text-5xl lg:text-[4.1rem]">
+            Your business outgrew the old way of running it.
+            <span className="block text-amber-500">Now build what&apos;s next.</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-600">
-            Lowe Advisory partners with small and mid-sized businesses to sharpen
-            strategy, fix operations, and build the momentum to grow — with
-            senior-level thinking and without the big-firm overhead.
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-600">
+            Lowe Advisory helps owner-led businesses turn growth friction into a
+            focused plan — so revenue, margins, and leadership capacity can move
+            together.
           </p>
 
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
             <Button href="/contact" size="lg" variant="secondary">
-              Book a Strategy Call
+              Start with a Strategy Call
               <Icon name="arrow-right" size={18} />
             </Button>
             <Button href="/services" size="lg" variant="outline">
@@ -66,10 +69,36 @@ function Hero() {
             </Button>
           </div>
 
-          <p className="mt-6 text-sm text-ink-500">
-            No pressure, no obligation. A focused 30-minute conversation about
-            your business.
-          </p>
+          <p className="mt-5 text-sm text-ink-500">A focused 30-minute conversation. No pitch deck, no pressure.</p>
+          </div>
+
+          <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:justify-self-end">
+            <div className="absolute -inset-4 rounded-[2rem] bg-amber-200/25 blur-2xl" aria-hidden />
+            <div className="relative overflow-hidden rounded-2xl border border-navy-800 bg-navy-950 p-6 shadow-2xl sm:p-8">
+              <div className="flex items-center justify-between border-b border-navy-800 pb-5">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">The first 90 days</p>
+                  <p className="mt-1 font-serif text-xl font-semibold text-white">Clarity before complexity</p>
+                </div>
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 text-navy-950"><Icon name="compass" size={20} /></span>
+              </div>
+              <div className="space-y-5 py-6">
+                {[
+                  ["01", "Find the constraint", "Identify what is really slowing growth or draining margin."],
+                  ["02", "Choose the few moves", "Build a sequence your team can execute with confidence."],
+                  ["03", "Create operating rhythm", "Put owners, measures, and momentum behind the plan."],
+                ].map(([number, title, copy]) => (
+                  <div key={number} className="flex gap-4">
+                    <span className="font-serif text-xl font-semibold text-amber-400">{number}</span>
+                    <div><h2 className="font-sans text-sm font-semibold text-white">{title}</h2><p className="mt-1 text-sm leading-relaxed text-navy-300">{copy}</p></div>
+                  </div>
+                ))}
+              </div>
+              <div className="rounded-lg border border-navy-700 bg-white/5 px-4 py-3 text-sm text-navy-200">
+                Direct principal involvement from diagnosis through execution.
+              </div>
+            </div>
+          </div>
         </div>
       </Container>
     </section>
@@ -89,6 +118,45 @@ function StatsStrip() {
             <div className="mt-2 text-sm text-navy-300">{s.label}</div>
           </div>
         ))}
+      </Container>
+    </section>
+  );
+}
+
+/* ────────────────── Inflection points ────────────────── */
+function InflectionPoints() {
+  const points = [
+    "Revenue has grown, but the business feels harder to run.",
+    "Your team is busy, yet the important work keeps slipping.",
+    "The next market, hire, or investment decision carries real weight.",
+  ];
+
+  return (
+    <section className="bg-amber-50 py-16 sm:py-20">
+      <Container>
+        <div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-700">Built for an inflection point</p>
+            <h2 className="mt-3 max-w-md text-3xl font-semibold leading-tight sm:text-4xl">When a smart business needs a sharper operating model.</h2>
+            <div className="relative mt-8 aspect-[4/5] max-w-sm overflow-hidden rounded-2xl shadow-lg">
+              <Image
+                src="/images/team-strategy-session.jpg"
+                alt="Lowe Advisory leading a business strategy session"
+                fill
+                sizes="(min-width: 1024px) 24rem, (min-width: 640px) 22rem, calc(100vw - 2.5rem)"
+                className="object-cover object-center"
+              />
+            </div>
+          </div>
+          <div className="grid gap-3">
+            {points.map((point) => (
+              <div key={point} className="flex items-start gap-4 rounded-lg border border-amber-200/80 bg-white/70 px-5 py-4">
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-navy-900 text-amber-400"><Icon name="check" size={14} /></span>
+                <p className="text-base leading-relaxed text-navy-900">{point}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </Container>
     </section>
   );
@@ -207,29 +275,69 @@ function Process() {
 }
 
 /* ───────────────────── Testimonials ───────────────────── */
+const clientReviews = [
+  {
+    src: "/images/client-review-isla-hayes.jpg",
+    alt: "Review from Isla Hayes, client of Lowe Advisory",
+    name: "Isla Hayes",
+  },
+  {
+    src: "/images/client-review-jane.j.jpeg",
+    alt: "Review from Jane J., client of Lowe Advisory",
+    name: "Jane J.",
+  },
+  {
+    src: "/images/client-review-richard-kensington.jpg",
+    alt: "Review from Richard Kensington, client of Lowe Advisory",
+    name: "Richard Kensington",
+  },
+];
+
 function Testimonials() {
   return (
     <section className="bg-navy-950 py-20 text-white sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="What clients say"
-          title="Trusted by founders and owners"
-          subtitle="Real results from real engagements. (Profiles kept anonymous at client request.)"
+          title="Real words from real clients"
+          subtitle="Screenshots of actual reviews from people Lowe Advisory has worked with."
           dark
         />
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
-          {testimonials.map((t) => (
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {clientReviews.map((r) => (
             <figure
-              key={t.name}
-              className="flex flex-col rounded-xl border border-navy-800 bg-navy-900 p-7"
+              key={r.src}
+              className="group flex flex-col overflow-hidden rounded-xl border border-navy-800 bg-navy-900 shadow-sm transition-all hover:-translate-y-0.5 hover:border-amber-400/40 hover:shadow-xl"
             >
-              <Icon name="quote" size={28} className="text-amber-400" />
-              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-navy-200">
+              <div className="relative aspect-[3/4] overflow-hidden bg-navy-950">
+                <Image
+                  src={r.src}
+                  alt={r.alt}
+                  fill
+                  sizes="(min-width: 1024px) 22rem, (min-width: 640px) 32rem, calc(100vw - 2.5rem)"
+                  className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+                />
+              </div>
+              <figcaption className="flex items-center gap-2 px-5 py-3.5 text-sm text-navy-300">
+                <Icon name="check-circle" size={15} className="text-amber-400" />
+                <span className="font-medium text-white">{r.name}</span>
+                <span className="text-navy-500">· Verified client</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        {/* Supporting text quotes */}
+        <div className="mt-10 grid gap-5 border-t border-navy-800 pt-10 sm:grid-cols-3">
+          {testimonials.map((t) => (
+            <figure key={t.name} className="flex flex-col">
+              <Icon name="quote" size={22} className="text-amber-400/80" />
+              <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-navy-300">
                 {t.quote}
               </blockquote>
-              <figcaption className="mt-6 border-t border-navy-800 pt-4">
-                <div className="font-medium text-white">{t.name}</div>
-                <div className="text-xs text-navy-400">{t.role}</div>
+              <figcaption className="mt-4 text-xs text-navy-500">
+                <span className="font-medium text-navy-200">{t.name}</span>
+                <span className="text-navy-500"> · {t.role}</span>
               </figcaption>
             </figure>
           ))}

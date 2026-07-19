@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
@@ -38,8 +39,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="lg:col-span-5">
-              {/* ⚙️ EDIT ME — replace with a real founder photo at /public/team/founder.jpg */}
-              <FounderAvatar name={founder.name} />
+              <FounderPortrait name={founder.name} />
             </div>
           </div>
         </Container>
@@ -129,38 +129,28 @@ function Value({ title, body }: { title: string; body: string }) {
   );
 }
 
-function FounderAvatar({ name }: { name: string }) {
+function FounderPortrait({ name }: { name: string }) {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-2xl bg-gradient-to-br from-navy-700 to-navy-950 shadow-xl">
+    <figure className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl bg-navy-950 shadow-xl">
+      <Image
+        src="/images/anastasia-lowe-professional.png"
+        alt={`${name}, Founder and Principal Advisor at Lowe Advisory`}
+        fill
+        priority
+        sizes="(min-width: 1024px) 28rem, (min-width: 640px) 24rem, calc(100vw - 2.5rem)"
+        className="object-cover object-center"
+      />
       <div
         aria-hidden
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy-950/50 to-transparent"
         style={{
           backgroundImage:
-            "radial-gradient(30rem 15rem at 70% 20%, rgba(217,162,62,0.4), transparent 60%)",
+            "linear-gradient(to top, rgba(13,24,48,0.48), transparent)",
         }}
       />
-      <div className="absolute inset-0 flex items-center justify-center p-8 text-center">
-        <div>
-          <div className="font-serif text-7xl font-semibold text-amber-400">
-            {getInitials(name)}
-          </div>
-          <p className="mt-3 text-sm font-medium uppercase tracking-wider text-navy-300">
-            Founder & Principal
-          </p>
-        </div>
-      </div>
-    </div>
+      <figcaption className="absolute inset-x-0 bottom-0 p-5 text-sm font-medium text-white">
+        {name} · Founder & Principal Advisor
+      </figcaption>
+    </figure>
   );
-}
-
-function getInitials(name: string): string {
-  if (!name || name.startsWith("["))
-    return "LA";
-  return name
-    .split(" ")
-    .map((w) => w[0])
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
 }
