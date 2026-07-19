@@ -11,18 +11,21 @@
  */
 
 export const site = {
-  /** ⚙️ EDIT ME — the firm's public name */
-  name: "Lowe Advisory",
+  /** ✅ The firm's legal/public name. */
+  name: "Lowe Advisory, LLC",
 
-  /** ⚙️ EDIT ME — one-line tagline shown in the header + hero */
+  /** ✅ Short brand name used in tight spaces (header logo). */
+  shortName: "Lowe Advisory",
+
+  /** ✅ One-line tagline shown in the header + hero. */
   tagline: "Strategy & Operations Consulting for Growing Businesses",
 
-  /** ⚙️ EDIT ME — the live domain once DNS is pointed. Used for SEO + sitemap. */
+  /** ✅ The live domain. Used for SEO + sitemap. */
   url: "https://loweadvisory.com",
 
-  /** ⚙️ EDIT ME — short SEO meta description (~150 chars) */
+  /** ✅ Short SEO meta description (~150 chars). */
   description:
-    "Lowe Advisory helps small and mid-sized businesses sharpen strategy, fix operations, and grow with confidence. Practical, senior-level consulting — without the big-firm overhead.",
+    "Lowe Advisory, LLC helps small and mid-sized businesses sharpen strategy, fix operations, and grow with confidence. Practical, senior-level consulting — without the big-firm overhead.",
 
   /** ✅ Set — where the form submissions + inquiries are sent */
   contactEmail: "loweadvisory@gmail.com",
@@ -52,7 +55,7 @@ export const site = {
   founder: {
     name: "Anastasia Lowe",
     title: "Founder & Principal Advisor",
-    bio: `I'm Anastasia Lowe, founder of Lowe Advisory. For over a decade I've helped small and mid-sized business owners turn complexity into clarity — cutting through the noise to find the few decisions that actually move the needle.
+    bio: `I'm Anastasia Lowe, founder of Lowe Advisory, LLC. For over a decade I've helped small and mid-sized business owners turn complexity into clarity — cutting through the noise to find the few decisions that actually move the needle.
 
 My work sits at the intersection of strategy and operations: where to compete, how to grow, what to fix first. I've guided founders through fundraising readiness, built operating plans from scratch, streamlined delivery, and helped leadership teams get unstuck at critical inflection points.
 

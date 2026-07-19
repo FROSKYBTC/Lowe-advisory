@@ -65,7 +65,7 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: process.env.RESEND_FROM || `Lowe Advisory <onboarding@resend.dev>`,
+        from: process.env.RESEND_FROM || `Lowe Advisory, LLC <onboarding@resend.dev>`,
         to,
         reply_to: email,
         subject: `New inquiry — ${topic || "Contact form"}`,

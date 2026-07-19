@@ -8,7 +8,7 @@ import { caseStudies } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    "Real engagement outcomes from Lowe Advisory — revenue growth, margin improvement, extended runway, and capital raised for SMB clients.",
+    "Real engagement outcomes from Lowe Advisory, LLC — revenue growth, margin improvement, extended runway, and capital raised for SMB clients.",
   alternates: { canonical: "/case-studies" },
 };
 

@@ -36,7 +36,7 @@ export function Footer() {
                 </svg>
               </span>
               <span className="font-serif text-lg font-semibold text-white">
-                Lowe Advisory
+                Lowe Advisory, <span className="text-amber-400">LLC</span>
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-navy-300">

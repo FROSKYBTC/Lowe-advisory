@@ -9,7 +9,7 @@ import { formatDate } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Insights",
   description:
-    "Practical thinking on strategy, operations, and growth for small and mid-sized businesses — from Lowe Advisory.",
+    "Practical thinking on strategy, operations, and growth for small and mid-sized businesses — from Lowe Advisory, LLC.",
   alternates: { canonical: "/insights" },
 };
 
