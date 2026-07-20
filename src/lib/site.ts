@@ -30,8 +30,9 @@ export const site = {
   /** ✅ Set — where the form submissions + inquiries are sent */
   contactEmail: "info@loweadvisorytx.com",
 
-  /** Add your verified Cal.com / Calendly URL to enable direct booking. */
-  bookingUrl: "",
+  /** Public Google Calendar booking page for 30-minute strategy calls. */
+  bookingUrl:
+    "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2nvRdu3yjBWEH_WIS9nSTuvrkNDnPeZJFs-0RgDHMwmtTDhaBvJwg6fqSe--4MRud3mPWWdNvg",
 
   /** ✅ Shown in footer + contact page. */
   location: "1301 N Mechanic St, El Campo, TX 77437",
@@ -48,7 +49,7 @@ export const site = {
 
   social: {
     /** ⚙️ EDIT ME — set to "" to hide each link */
-    linkedin: "https://www.linkedin.com/company/lowe-advisory",
+    linkedin: "",
     twitter: "",
     instagram: "",
   },
