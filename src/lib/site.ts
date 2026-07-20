@@ -28,7 +28,7 @@ export const site = {
     "Lowe Advisory, LLC helps small and mid-sized businesses sharpen strategy, fix operations, and grow with confidence. Practical, senior-level consulting — without the big-firm overhead.",
 
   /** ✅ Set — where the form submissions + inquiries are sent */
-  contactEmail: "loweadvisory@gmail.com",
+  contactEmail: "info@loweadvisorytx.com",
 
   /** Add your verified Cal.com / Calendly URL to enable direct booking. */
   bookingUrl: "",
