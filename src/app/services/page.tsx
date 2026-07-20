@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { services, processSteps } from "@/lib/site";
+import { services, processSteps, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -138,7 +138,7 @@ function Cta() {
             and we'll recommend the right path.
           </p>
           <div className="mt-7">
-            <Button href="/contact" size="lg" variant="primary">
+            <Button href={site.bookingUrl || "/contact"} size="lg" variant="primary">
               Let's Talk
               <Icon name="arrow-right" size={18} />
             </Button>

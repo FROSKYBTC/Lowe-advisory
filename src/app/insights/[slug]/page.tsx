@@ -128,7 +128,7 @@ export default async function PostPage({
                 change how you see the problem.
               </p>
               <Button
-                href="/contact"
+                href={site.bookingUrl || "/contact"}
                 size="md"
                 variant="secondary"
                 className="mt-5"

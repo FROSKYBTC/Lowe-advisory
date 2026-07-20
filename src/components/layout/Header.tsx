@@ -38,7 +38,7 @@ export function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href="/contact" size="sm" variant="secondary">
+          <Button href={site.bookingUrl || "/contact"} size="sm" variant="secondary">
             Book a Call
           </Button>
         </div>
@@ -74,7 +74,7 @@ export function Header() {
             </Link>
           ))}
           <Button
-            href="/contact"
+            href={site.bookingUrl || "/contact"}
             variant="secondary"
             className="mt-2 w-full"
             onClick={() => setOpen(false)}

@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { caseStudies } from "@/lib/site";
+import { caseStudies, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Case Studies",
@@ -97,7 +97,7 @@ export default function CaseStudiesPage() {
               subtitle="If you have a challenge worth solving, we'd like to hear about it."
             />
             <div className="mt-8 text-center">
-              <Button href="/contact" size="lg" variant="secondary">
+              <Button href={site.bookingUrl || "/contact"} size="lg" variant="secondary">
                 Start a Conversation
                 <Icon name="arrow-right" size={18} />
               </Button>

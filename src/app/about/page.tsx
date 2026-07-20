@@ -108,7 +108,7 @@ export default function AboutPage() {
               conversation. No pitch — just a genuine look at your situation.
             </p>
             <div className="mt-7">
-              <Button href="/contact" size="lg" variant="secondary">
+              <Button href={site.bookingUrl || "/contact"} size="lg" variant="secondary">
                 Book a Strategy Call
                 <Icon name="arrow-right" size={18} />
               </Button>

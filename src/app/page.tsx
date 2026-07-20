@@ -59,7 +59,7 @@ function Hero() {
           </p>
 
           <div className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <Button href="/contact" size="lg" variant="secondary">
+            <Button href={site.bookingUrl || "/contact"} size="lg" variant="secondary">
               Start with a Strategy Call
               <Icon name="arrow-right" size={18} />
             </Button>
@@ -418,7 +418,7 @@ function CtaSection() {
               are, where you want to be, and the fastest path between them.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button href="/contact" size="lg" variant="secondary">
+              <Button href={site.bookingUrl || "/contact"} size="lg" variant="secondary">
                 Book a Strategy Call
                 <Icon name="arrow-right" size={18} />
               </Button>
