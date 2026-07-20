@@ -30,8 +30,8 @@ export const site = {
   /** ✅ Set — where the form submissions + inquiries are sent */
   contactEmail: "loweadvisory@gmail.com",
 
-  /** ⚙️ EDIT ME — your Cal.com / Calendly booking link (set up later). */
-  bookingUrl: "https://cal.com/lowe-advisory",
+  /** Add your verified Cal.com / Calendly URL to enable direct booking. */
+  bookingUrl: "",
 
   /** ✅ Shown in footer + contact page. */
   location: "1301 N Mechanic St, El Campo, TX 77437",

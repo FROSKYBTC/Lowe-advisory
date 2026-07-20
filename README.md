@@ -93,7 +93,7 @@ The form at `/contact` posts to `/api/contact`, which:
 2. Validates name/email/message.
 3. Sends the inquiry to `loweadvisory@gmail.com` via **Resend**.
 
-**Without a Resend API key** (e.g. in local dev), submissions are logged to the server console and acknowledged — the form still works, just no email is sent.
+**Without a Resend API key**, the form clearly tells the visitor that email delivery is being configured. It never claims an inquiry was delivered when it was not.
 
 **To enable real email delivery:**
 1. Create a free account at [resend.com](https://resend.com).
@@ -110,7 +110,7 @@ The form at `/contact` posts to `/api/contact`, which:
 
 ## 📅 Booking calls (Cal.com)
 
-The "Book a Strategy Call" buttons link to `bookingUrl` in `site.ts` (currently `https://cal.com/lowe-advisory`). To make this live:
+The "Book a Strategy Call" buttons link to `bookingUrl` in `site.ts`. The direct-booking panel remains hidden until a verified link is added; all other calls to action safely lead to the contact page. To make direct booking live:
 1. Create a free account at [cal.com](https://cal.com).
 2. Set up a 30-minute "Strategy Call" event type.
 3. Update `bookingUrl` in `src/lib/site.ts` to your real link.
@@ -152,6 +152,8 @@ Once deployed and you're ready to go live:
 | `RESEND_API_KEY` | Send contact form emails | Only for live email |
 | `RESEND_FROM` | "From" address for emails | Only for live email |
 | `CONTACT_TO_EMAIL` | Where inquiries are sent | Only for live email |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 measurement ID (`G-…`) | Optional |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Google Search Console verification token | Optional |
 
 Copy `.env.example` → `.env.local` locally. In Vercel, add them in the dashboard. **Never commit `.env.local`.**
 

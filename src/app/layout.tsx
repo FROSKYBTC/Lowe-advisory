@@ -1,23 +1,9 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { Fraunces } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { site } from "@/lib/site";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  display: "swap",
-  axes: ["SOFT", "WONK", "opsz"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -55,12 +41,16 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
   alternates: { canonical: site.url },
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const googleMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -81,17 +71,28 @@ export default function RootLayout({
   };
 
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${fraunces.variable} h-full antialiased`}
-    >
+    <html lang="en" className="h-full antialiased">
       <body className="flex min-h-full flex-col bg-white text-ink-900">
+        {googleMeasurementId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleMeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${googleMeasurementId}', { anonymize_ip: true });`}
+            </Script>
+          </>
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <div aria-hidden className="brand-background-mark" />
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

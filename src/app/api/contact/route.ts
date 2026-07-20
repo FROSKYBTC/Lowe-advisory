@@ -47,12 +47,13 @@ export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL || site.contactEmail;
 
-  // No API key → log and acknowledge (preview/dev mode).
+  // No provider configured: do not imply that a lead was delivered.
   if (!apiKey) {
-    console.log("[contact] (no RESEND_API_KEY) submission:", payload);
     return NextResponse.json(
-      { ok: true, note: "Logged (no email provider configured)." },
-      { status: 200 },
+      {
+        error: `Email delivery is being configured. Please contact us directly at ${site.contactEmail}.`,
+      },
+      { status: 503 },
     );
   }
 

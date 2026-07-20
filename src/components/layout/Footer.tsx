@@ -67,7 +67,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-navy-800 pt-6 text-sm text-navy-400 sm:flex-row sm:items-center">
           <p>
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
+            © 2017 {site.name}. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link href="/privacy" className="hover:text-white">

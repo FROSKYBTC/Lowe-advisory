@@ -1,8 +1,10 @@
+import Image from "next/image";
+
 /**
  * Lowe Advisory — Logo Mark
  *
- * Concept: Bold "L" (the firm's initial) with an upward chevron rising
- * from inside the L — growth emerging from a strong foundation.
+ * Concept: An Adobe-created geometric "L" with an amber ascent line —
+ * practical direction and progress from a strong foundation.
  *
  * Colors:
  *   Navy   #0d1830  — the L stroke (authority, depth)
@@ -26,54 +28,23 @@ export function LogoMark({
   className,
   title = "Lowe Advisory",
 }: LogoProps) {
-  const lStroke = variant === "light" ? "#ffffff" : "#0d1830";
-  const chevronStroke = "#d9a23e";
-  const id = `logo-${variant}`;
-
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      fill="none"
-      className={className}
+    <span
+      className={`inline-flex shrink-0 overflow-hidden rounded-sm ${
+        variant === "light" ? "ring-1 ring-white/15" : "ring-1 ring-navy-100"
+      } ${className ?? ""}`}
       role="img"
       aria-label={title}
+      style={{ width: size, height: size }}
     >
-      <title>{title}</title>
-      <defs>
-        <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor={chevronStroke} stopOpacity="1" />
-          <stop offset="100%" stopColor={chevronStroke} stopOpacity="0.85" />
-        </linearGradient>
-      </defs>
-      {/* The L */}
-      <path
-        d="M12 8 L12 40 L36 40"
-        stroke={lStroke}
-        strokeWidth="6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
+      <Image
+        src="/images/lowe-advisory-icon.png"
+        alt=""
+        width={size}
+        height={size}
+        className="h-full w-full object-cover"
       />
-      {/* Upward chevron rising from inside the L */}
-      <path
-        d="M18 22 L27 13 L36 22"
-        stroke={`url(#${id})`}
-        strokeWidth="5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      {/* Stem of the arrow, continuing upward momentum */}
-      <path
-        d="M27 13 L27 30"
-        stroke={`url(#${id})`}
-        strokeWidth="5"
-        strokeLinecap="round"
-        fill="none"
-      />
-    </svg>
+    </span>
   );
 }
 
