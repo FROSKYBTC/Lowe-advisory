@@ -128,7 +128,7 @@ function formatHtml(p: {
   return `
     <div style="font-family:ui-sans-serif,system-ui,Arial,sans-serif;max-width:560px;margin:0 auto">
       <h2 style="color:#0d1830;margin:0 0 4px">New inquiry from ${escapeHtml(p.name)}</h2>
-      <p style="color:#6b7280;margin:0 0 20px;font-size:13px">Submitted via loweadvisory.com</p>
+      <p style="color:#6b7280;margin:0 0 20px;font-size:13px">Submitted via loweadvisorytx.com</p>
       <table style="border-collapse:collapse;margin:0 0 20px">
         ${row("Topic", escapeHtml(p.topic))}
         ${row("Email", escapeHtml(p.email))}
