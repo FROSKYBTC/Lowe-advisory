@@ -21,7 +21,7 @@ export const site = {
   tagline: "Strategy & Operations Consulting for Growing Businesses",
 
   /** ✅ The live domain. Used for SEO + sitemap. */
-  url: "https://loweadvisory.com",
+  url: "https://www.loweadvisorytx.com",
 
   /** ✅ Short SEO meta description (~150 chars). */
   description:
