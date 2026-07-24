@@ -1,6 +1,24 @@
 import { NextResponse } from "next/server";
 import { site } from "@/lib/site";
 
+const MAX_BODY_BYTES = 16 * 1024;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+
+const allowedTopics = new Set([
+  "Growth strategy",
+  "Operations / efficiency",
+  "Financial planning / fundraising",
+  "Go-to-market",
+  "Leadership advisory",
+  "Something else",
+]);
+
+const rateLimitStore = new Map<
+  string,
+  { count: number; resetAt: number }
+>();
+
 /**
  * Contact form handler.
  *
@@ -9,29 +27,78 @@ import { site } from "@/lib/site";
  * preview — but no email is actually sent. See README → "Contact form".
  */
 export async function POST(request: Request) {
-  let body: Record<string, string>;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  const rateLimit = checkRateLimit(getClientIp(request));
+  if (rateLimit.limited) {
+    return jsonResponse(
+      { error: "Too many messages. Please wait a few minutes and try again." },
+      429,
+      { "Retry-After": String(rateLimit.retryAfterSeconds) },
+    );
   }
 
-  const { name, email, company, role, topic, message, company_website } = body;
+  const declaredLength = Number(request.headers.get("content-length") || "0");
+  if (Number.isFinite(declaredLength) && declaredLength > MAX_BODY_BYTES) {
+    return jsonResponse({ error: "Request is too large." }, 413);
+  }
+
+  let rawBody: string;
+  try {
+    rawBody = await request.text();
+  } catch {
+    return jsonResponse({ error: "Invalid request." }, 400);
+  }
+
+  if (new TextEncoder().encode(rawBody).byteLength > MAX_BODY_BYTES) {
+    return jsonResponse({ error: "Request is too large." }, 413);
+  }
+
+  let parsedBody: unknown;
+  try {
+    parsedBody = JSON.parse(rawBody);
+  } catch {
+    return jsonResponse({ error: "Invalid request." }, 400);
+  }
+
+  if (
+    !parsedBody ||
+    typeof parsedBody !== "object" ||
+    Array.isArray(parsedBody)
+  ) {
+    return jsonResponse({ error: "Invalid request." }, 400);
+  }
+
+  const body = parsedBody as Record<string, unknown>;
+  const name = getString(body.name).trim();
+  const email = getString(body.email).trim();
+  const company = getString(body.company).trim();
+  const role = getString(body.role).trim();
+  const topic = getString(body.topic).trim();
+  const message = getString(body.message).trim();
+  const companyWebsite = getString(body.company_website).trim();
 
   // Honeypot: if the hidden field is filled, silently drop (bot).
-  if (company_website) {
-    return NextResponse.json({ ok: true }, { status: 200 });
+  if (companyWebsite) {
+    return jsonResponse({ ok: true }, 200);
   }
 
   // Validation
   const errors: string[] = [];
-  if (!name || !name.trim()) errors.push("Name is required.");
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+  if (!name) errors.push("Name is required.");
+  if (name.length > 120) errors.push("Name is too long.");
+  if (
+    !email ||
+    email.length > 254 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  )
     errors.push("A valid email is required.");
-  if (!message || message.trim().length < 10)
+  if (company.length > 160) errors.push("Company is too long.");
+  if (role.length > 160) errors.push("Role is too long.");
+  if (!allowedTopics.has(topic)) errors.push("Please choose a valid topic.");
+  if (message.length < 10)
     errors.push("Please include a message of at least 10 characters.");
+  if (message.length > 5000) errors.push("Message is too long.");
   if (errors.length) {
-    return NextResponse.json({ error: errors.join(" ") }, { status: 422 });
+    return jsonResponse({ error: errors.join(" ") }, 422);
   }
 
   const payload = {
@@ -49,11 +116,11 @@ export async function POST(request: Request) {
 
   // No provider configured: do not imply that a lead was delivered.
   if (!apiKey) {
-    return NextResponse.json(
+    return jsonResponse(
       {
         error: `Email delivery is being configured. Please contact us directly at ${site.contactEmail}.`,
       },
-      { status: 503 },
+      503,
     );
   }
 
@@ -78,20 +145,77 @@ export async function POST(request: Request) {
     if (!res.ok) {
       const detail = await res.text();
       console.error("[contact] Resend error:", res.status, detail);
-      return NextResponse.json(
+      return jsonResponse(
         { error: "Could not send message. Please try emailing us directly." },
-        { status: 502 },
+        502,
       );
     }
 
-    return NextResponse.json({ ok: true }, { status: 200 });
+    return jsonResponse({ ok: true }, 200);
   } catch (err) {
     console.error("[contact] unexpected error:", err);
-    return NextResponse.json(
+    return jsonResponse(
       { error: "Something went wrong. Please email us directly." },
-      { status: 500 },
+      500,
     );
   }
+}
+
+function getString(value: unknown): string {
+  return typeof value === "string" ? value : "";
+}
+
+function getClientIp(request: Request): string {
+  const forwarded =
+    request.headers.get("x-vercel-forwarded-for") ||
+    request.headers.get("x-forwarded-for");
+  return forwarded?.split(",")[0]?.trim() || "unknown";
+}
+
+function checkRateLimit(ip: string): {
+  limited: boolean;
+  retryAfterSeconds: number;
+} {
+  const now = Date.now();
+
+  if (rateLimitStore.size > 1_000) {
+    for (const [key, value] of rateLimitStore) {
+      if (value.resetAt <= now) rateLimitStore.delete(key);
+    }
+  }
+
+  const current = rateLimitStore.get(ip);
+  if (!current || current.resetAt <= now) {
+    rateLimitStore.set(ip, {
+      count: 1,
+      resetAt: now + RATE_LIMIT_WINDOW_MS,
+    });
+    return { limited: false, retryAfterSeconds: 0 };
+  }
+
+  if (current.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return {
+      limited: true,
+      retryAfterSeconds: Math.max(1, Math.ceil((current.resetAt - now) / 1000)),
+    };
+  }
+
+  current.count += 1;
+  return { limited: false, retryAfterSeconds: 0 };
+}
+
+function jsonResponse(
+  body: Record<string, unknown>,
+  status: number,
+  headers: Record<string, string> = {},
+) {
+  return NextResponse.json(body, {
+    status,
+    headers: {
+      "Cache-Control": "no-store",
+      ...headers,
+    },
+  });
 }
 
 function formatPlainText(p: {
