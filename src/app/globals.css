@@ -147,6 +147,59 @@ main::before {
   margin-inline: auto;
 }
 
+/*
+  Homepage palette treatment
+  Option 3's deep navy + amber header is scoped to the homepage by the
+  presence of .home-option-three-palette inside <main>.
+*/
+body:has(.home-option-three-palette) .site-header {
+  border-color: rgba(217, 162, 62, 0.22);
+  background: rgba(7, 21, 44, 0.94);
+}
+
+body:has(.home-option-three-palette) .site-header-logo {
+  filter: grayscale(1) brightness(0) invert(1);
+}
+
+body:has(.home-option-three-palette) .site-header-nav-link {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+body:has(.home-option-three-palette) .site-header-nav-link:hover {
+  color: var(--color-amber-300);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body:has(.home-option-three-palette) .site-header-toggle {
+  color: white;
+}
+
+body:has(.home-option-three-palette) .site-header-mobile-menu {
+  border-color: rgba(217, 162, 62, 0.22);
+  background: #07152c;
+}
+
+body:has(.home-option-three-palette) .site-header-mobile-link {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+body:has(.home-option-three-palette) .site-header-mobile-link:hover {
+  color: var(--color-amber-300);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.home-option-three-palette .home-hero-secondary {
+  color: white;
+  border-color: var(--color-amber-400);
+  background: transparent;
+}
+
+.home-option-three-palette .home-hero-secondary:hover {
+  color: white;
+  border-color: var(--color-amber-300);
+  background: rgba(255, 255, 255, 0.1);
+}
+
 /* ── Article / markdown typography ── */
 .prose-advisory {
   color: var(--color-ink-700);

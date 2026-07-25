@@ -23,6 +23,7 @@ export default function HomePage() {
       <Services />
       <Process />
       <Testimonials />
+      <TexasBanner />
       <CtaSection />
     </>
   );
@@ -31,43 +32,42 @@ export default function HomePage() {
 /* ───────────────────────── Hero ───────────────────────── */
 function Hero() {
   return (
-    <section className="overflow-hidden border-b border-ink-100 bg-[#fbfaf7]">
+    <section className="home-option-three-palette relative overflow-hidden border-b border-navy-800 bg-navy-950">
+      {/* Background image (home-hero.jpg), darkened for text legibility */}
+      <Image
+        src="/images/home-hero.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(7,21,44,0.92) 0%, rgba(7,21,44,0.82) 55%, rgba(7,21,44,0.72) 100%)",
+        }}
+      />
       <div className="relative mx-auto w-full max-w-[90rem] lg:min-h-[32.5rem]">
-        <div className="absolute inset-y-0 right-0 hidden w-[65%] lg:block">
-          <Image
-            src="/images/home-hero-strategy-presentation.jpg"
-            alt="Anastasia Lowe leading a strategy presentation for business owners"
-            fill
-            priority
-            sizes="(min-width: 1440px) 59rem, 65vw"
-            className="object-cover object-center"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, #fbfaf7 0%, rgba(251, 250, 247, 0.98) 18%, rgba(251, 250, 247, 0.66) 35%, rgba(251, 250, 247, 0) 55%)",
-            }}
-          />
-        </div>
-
         <div className="relative z-10 flex items-center px-5 py-16 sm:px-8 sm:py-20 lg:min-h-[32.5rem] lg:w-[52%] lg:px-12 lg:py-8 xl:pl-20 xl:pr-6">
           <div className="max-w-[39rem]">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-600 sm:text-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300 sm:text-sm">
               {site.tagline}
             </p>
 
-            <h1 className="mt-5 text-4xl font-semibold leading-[1.04] tracking-tight text-navy-950 sm:text-5xl lg:text-[3.2rem] xl:text-[3.35rem]">
+            <h1 className="mt-5 text-4xl font-semibold leading-[1.04] tracking-tight text-white sm:text-5xl lg:text-[3.2rem] xl:text-[3.35rem]">
               <span className="lg:block">Your business</span>{" "}
               <span className="lg:block">outgrew the old</span>{" "}
               <span className="lg:block">way of running it.</span>
-              <span className="mt-2 block text-amber-500 xl:whitespace-nowrap">
+              <span className="mt-2 block text-amber-300 xl:whitespace-nowrap">
                 Now build what&apos;s next.
               </span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-600 lg:text-[1.05rem]">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-navy-100 lg:text-[1.05rem]">
               Lowe Advisory helps owner-led businesses turn growth friction into a
               focused plan — so revenue, margins, and leadership capacity can move
               together.
@@ -87,24 +87,13 @@ function Hero() {
                 href="/services"
                 size="lg"
                 variant="outline"
-                className="whitespace-nowrap"
+                className="home-hero-secondary whitespace-nowrap"
               >
                 Explore Services
               </Button>
             </div>
 
           </div>
-        </div>
-
-        <div className="relative min-h-[27rem] border-t border-ink-100 lg:hidden">
-          <Image
-            src="/images/home-hero-strategy-presentation.jpg"
-            alt="Anastasia Lowe leading a strategy presentation for business owners"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-          />
         </div>
       </div>
     </section>
@@ -250,23 +239,38 @@ function ValueProps() {
           title="Senior counsel, built for growing businesses"
           subtitle="You don't need a hundred-slide deck. You need clear thinking, the right priorities, and someone who'll see it through with you."
         />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {valueProps.map((v) => (
-            <div
-              key={v.title}
-              className="rounded-xl border border-ink-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-navy-50 text-navy-700">
-                <Icon name="check-circle" size={20} />
-              </span>
-              <h3 className="mt-4 text-base font-semibold text-navy-950">
-                {v.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-600">
-                {v.description}
-              </p>
+        <div className="mt-14 grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          {/* Image anchor */}
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
+              <Image
+                src="/images/home-about.jpg"
+                alt="Lowe Advisory working alongside a business owner to clarify strategy"
+                fill
+                sizes="(min-width: 1024px) 30rem, 100vw"
+                className="object-cover object-center"
+              />
             </div>
-          ))}
+          </div>
+          {/* Value props */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:col-span-7">
+            {valueProps.map((v) => (
+              <div
+                key={v.title}
+                className="rounded-xl border border-ink-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-navy-50 text-navy-700">
+                  <Icon name="check-circle" size={20} />
+                </span>
+                <h3 className="mt-4 text-base font-semibold text-navy-950">
+                  {v.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-600">
+                  {v.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </Container>
     </section>
@@ -468,6 +472,48 @@ function Testimonials() {
               </figcaption>
             </figure>
           ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* ───────────────────── Texas banner ───────────────────── */
+function TexasBanner() {
+  return (
+    <section className="relative overflow-hidden">
+      <Image
+        src="/images/home-texas-skyline.jpg"
+        alt="Texas skyline representing Lowe Advisory's home market"
+        fill
+        sizes="100vw"
+        className="object-cover object-center"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(7,21,44,0.92) 0%, rgba(7,21,44,0.70) 45%, rgba(7,21,44,0.45) 100%)",
+        }}
+      />
+      <Container className="relative z-10 flex min-h-[20rem] items-center py-16 sm:py-20">
+        <div className="max-w-xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">
+            Proudly based in Texas
+          </p>
+          <h2 className="mt-4 text-3xl font-semibold leading-tight text-white sm:text-4xl">
+            Local roots. National reach.
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-navy-100">
+            Headquartered in El Campo, we work with owner-led businesses across
+            Texas and beyond — on-site where it helps, remote where it&apos;s
+            faster.
+          </p>
+          <div className="mt-6 flex items-center gap-2 text-sm text-navy-200">
+            <Icon name="map-pin" size={16} className="text-amber-300" />
+            <span>{site.location}</span>
+          </div>
         </div>
       </Container>
     </section>

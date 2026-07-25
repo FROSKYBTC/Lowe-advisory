@@ -14,11 +14,11 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-ink-100 bg-white/85 backdrop-blur-md">
+    <header className="site-header sticky top-0 z-50 w-full border-b border-ink-100 bg-white/85 backdrop-blur-md">
       <Container className="flex h-16 max-w-[85rem] items-center justify-between md:h-20">
         {/* Logo */}
         <Link href="/" className="flex items-center" aria-label={site.name}>
-          <Logo height={34} priority />
+          <Logo height={34} priority className="site-header-logo" />
         </Link>
 
         {/* Desktop nav */}
@@ -27,7 +27,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-2 text-sm font-medium text-ink-600 transition-colors hover:bg-navy-50 hover:text-navy-900"
+              className="site-header-nav-link rounded-md px-3 py-2 text-sm font-medium text-ink-600 transition-colors hover:bg-navy-50 hover:text-navy-900"
             >
               {item.label}
             </Link>
@@ -43,7 +43,7 @@ export function Header() {
         {/* Mobile toggle */}
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-navy-900 md:hidden"
+          className="site-header-toggle inline-flex h-10 w-10 items-center justify-center rounded-md text-navy-900 md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
@@ -55,7 +55,7 @@ export function Header() {
       {/* Mobile menu */}
       <div
         className={cn(
-          "md:hidden overflow-hidden border-t border-ink-100 bg-white transition-[max-height,opacity] duration-300",
+          "site-header-mobile-menu md:hidden overflow-hidden border-t border-ink-100 bg-white transition-[max-height,opacity] duration-300",
           open ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
         )}
       >
@@ -65,7 +65,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-3 text-base font-medium text-ink-700 hover:bg-navy-50"
+              className="site-header-mobile-link rounded-md px-3 py-3 text-base font-medium text-ink-700 hover:bg-navy-50"
             >
               {item.label}
             </Link>
