@@ -51,27 +51,11 @@ export default async function OGImage() {
               border: "1px solid rgba(255,255,255,0.15)",
             }}
           >
-            <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-              <path
-                d="M12 8 L12 40 L36 40"
-                stroke="#ffffff"
-                strokeWidth="6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M18 22 L27 13 L36 22"
-                stroke="#d9a23e"
-                strokeWidth="5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M27 13 L27 30"
-                stroke="#d9a23e"
-                strokeWidth="5"
-                strokeLinecap="round"
-              />
+            {/* Stylized triangular growth mark matching the official logo */}
+            <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+              <path d="M24 6 L42 40 L6 40 Z" fill="#ffffff" opacity="0.95" />
+              <path d="M24 14 L36 38 L12 38 Z" fill="#0d1830" opacity="0.9" />
+              <path d="M24 22 L30 36 L18 36 Z" fill="#d9a23e" />
             </svg>
           </div>
           <div style={{ display: "flex", color: "white", fontSize: "30px", fontWeight: 600 }}>

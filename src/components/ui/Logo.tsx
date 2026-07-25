@@ -1,73 +1,70 @@
 import Image from "next/image";
 
 /**
- * Lowe Advisory — Logo Mark
+ * Lowe Advisory — Logo
  *
- * Concept: An Adobe-created geometric "L" with an amber ascent line —
- * practical direction and progress from a strong foundation.
+ * Uses the official horizontal logo lockup (icon + wordmark combined):
+ *   - logo-horizontal-transparent.png  → transparent background (header)
+ *   - logo-horizontal-solid.png        → solid background (use on dark/colored)
  *
- * Colors:
- *   Navy   #0d1830  — the L stroke (authority, depth)
- *   Amber  #d9a23e  — the chevron (growth, optimism, distinction)
- *
- * The mark is a single SVG that adapts to its container via `size`.
- * On dark backgrounds, pass variant="light" to render the L in white.
+ * The transparent PNG reads correctly on both light and dark backgrounds
+ * because the wordmark is navy/gray, not pure black or white.
  */
 
+const LOGO_TRANSPARENT = "/images/logo/logo-horizontal-transparent.png";
+const LOGO_SOLID = "/images/logo/logo-horizontal-solid.png";
+
 type LogoProps = {
-  size?: number;
-  /** "dark" = navy L (for light backgrounds), "light" = white L (for dark backgrounds) */
-  variant?: "dark" | "light";
+  /** Height of the logo in px. Width scales automatically (aspect ratio preserved). */
+  height?: number;
+  /** "transparent" = transparent bg (header). "solid" = solid bg (dark sections). */
+  variant?: "transparent" | "solid";
   className?: string;
-  title?: string;
+  priority?: boolean;
 };
 
-export function LogoMark({
-  size = 32,
-  variant = "dark",
+export function Logo({
+  height = 36,
+  variant = "transparent",
   className,
-  title = "Lowe Advisory",
+  priority = false,
 }: LogoProps) {
+  const src = variant === "solid" ? LOGO_SOLID : LOGO_TRANSPARENT;
+  // Source is 1344×326 → ratio ≈ 4.12:1 (transparent) / 1536×1024 → 1.5:1 (solid)
+  const aspect = variant === "solid" ? 1536 / 1024 : 1344 / 326;
+  const width = Math.round(height * aspect);
+
   return (
-    <span
-      className={`inline-flex shrink-0 overflow-hidden rounded-sm ${
-        variant === "light" ? "ring-1 ring-white/15" : "ring-1 ring-navy-100"
-      } ${className ?? ""}`}
-      role="img"
-      aria-label={title}
-      style={{ width: size, height: size }}
-    >
-      <Image
-        src="/images/lowe-advisory-icon.png"
-        alt=""
-        width={size}
-        height={size}
-        className="h-full w-full object-cover"
-      />
-    </span>
+    <Image
+      src={src}
+      alt="Lowe Advisory"
+      width={width}
+      height={height}
+      priority={priority}
+      className={`inline-block h-auto ${className ?? ""}`}
+      style={{ height }}
+    />
   );
 }
 
 /**
- * Full lockup: logo mark + wordmark "Lowe Advisory".
- * Use in headers/footers where there's room for the full brand.
+ * Compact icon-only mark for tight spaces (favicon-adjacent, mobile).
+ * Falls back to the solid logo scaled down.
  */
-export function LogoLockup({
-  size = 32,
-  variant = "dark",
+export function LogoMark({
+  size = 36,
   className,
 }: {
   size?: number;
-  variant?: "dark" | "light";
   className?: string;
 }) {
-  const wordColor = variant === "light" ? "text-white" : "text-navy-950";
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className ?? ""}`}>
-      <LogoMark size={size} variant={variant} />
-      <span className={`font-serif text-lg font-semibold tracking-tight ${wordColor}`}>
-        Lowe<span className="text-amber-500"> Advisory</span>
-      </span>
-    </span>
+    <Image
+      src="/images/logo/logo-horizontal-solid.png"
+      alt="Lowe Advisory"
+      width={size}
+      height={size}
+      className={`inline-block ${className ?? ""}`}
+    />
   );
 }

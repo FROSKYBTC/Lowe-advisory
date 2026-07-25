@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-import { LogoMark } from "@/components/ui/Logo";
+import { Logo } from "@/components/ui/Logo";
 import { mainNav } from "@/lib/nav";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -17,11 +17,8 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-ink-100 bg-white/85 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between md:h-20">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5" aria-label={site.name}>
-          <LogoMark size={34} variant="dark" />
-          <span className="font-serif text-lg font-semibold tracking-tight text-navy-950">
-            Lowe<span className="text-amber-500"> Advisory</span>
-          </span>
+        <Link href="/" className="flex items-center" aria-label={site.name}>
+          <Logo height={34} priority />
         </Link>
 
         {/* Desktop nav */}

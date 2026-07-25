@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Icon, type IconName } from "@/components/ui/Icon";
-import { LogoMark } from "@/components/ui/Logo";
+import { Logo } from "@/components/ui/Logo";
 import { footerNav } from "@/lib/nav";
 import { site } from "@/lib/site";
 
@@ -17,15 +17,14 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2.5">
-              <LogoMark size={34} variant="light" />
-              <span className="font-serif text-lg font-semibold text-white">
-                Lowe Advisory, <span className="text-amber-400">LLC</span>
-              </span>
-            </div>
+            <Logo
+              height={34}
+              variant="transparent"
+              className="brightness-0 invert opacity-95"
+            />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-navy-300">
-              {site.tagline}. Helping owners turn complexity into clarity and
-              intention into growth.
+              {site.name}. {site.tagline}. Helping owners turn complexity into
+              clarity and intention into growth.
             </p>
             <div className="mt-5 flex items-center gap-3">
               {socials.map((s) => (
