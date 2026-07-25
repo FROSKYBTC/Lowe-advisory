@@ -107,21 +107,21 @@ function ClarityToExecution() {
       title: "Align the priorities",
       description:
         "Surface the constraint and align on the few moves that will move revenue, margins, and capacity.",
-      image: "/images/home-priorities-presentation.jpg",
+      image: "/images/home-priorities-presentation.jpg?v=20260725-clean",
       alt: "Anastasia Lowe aligning business priorities during a leadership presentation",
     },
     {
       title: "Build the plan",
       description:
         "Translate strategy into a simple, accountable operating plan your team can execute with confidence.",
-      image: "/images/home-workshop-whiteboard.jpg",
+      image: "/images/home-workshop-whiteboard.jpg?v=20260725-clean",
       alt: "Anastasia Lowe building an operating plan with business leaders at a whiteboard",
     },
     {
       title: "Lead the change",
       description:
         "Establish rhythm, reinforce progress, and remove barriers so results compound.",
-      image: "/images/home-advisory-working-session.jpg",
+      image: "/images/home-advisory-working-session.jpg?v=20260725-clean",
       alt: "Anastasia Lowe leading a focused advisory working session",
     },
   ];
@@ -244,7 +244,7 @@ function ValueProps() {
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
               <Image
-                src="/images/home-about.jpg?v=20260725-red"
+                src="/images/home-about.jpg?v=20260725-clean"
                 alt="Anastasia Lowe working alongside a business owner to clarify strategy"
                 fill
                 sizes="(min-width: 1024px) 30rem, 100vw"
