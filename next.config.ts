@@ -37,7 +37,7 @@ const nextConfig: NextConfig = {
   images: {
     localPatterns: [
       { pathname: "/images/**", search: "" },
-      { pathname: "/images/home-about.jpg", search: "?v=20260725" },
+      { pathname: "/images/home-about.jpg", search: "?v=20260725-red" },
     ],
   },
   async headers() {

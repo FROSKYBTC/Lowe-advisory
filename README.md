@@ -59,7 +59,8 @@ Almost all site content lives in **`src/lib/site.ts`**. Edit values there and th
 
 **Already set with your real details:**
 - `contactEmail`: `loweadvisory@gmail.com`
-- `phone`: `+1(324)888-6889`
+- `phone`: `+1 (904) 666-3233`
+- `location`: `207 S Oklahoma Dr, Celina, TX 75009`
 
 ### Add a blog post
 Create a new markdown file in `src/content/posts/`:

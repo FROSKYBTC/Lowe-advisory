@@ -244,7 +244,7 @@ function ValueProps() {
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
               <Image
-                src="/images/home-about.jpg?v=20260725"
+                src="/images/home-about.jpg?v=20260725-red"
                 alt="Anastasia Lowe working alongside a business owner to clarify strategy"
                 fill
                 sizes="(min-width: 1024px) 30rem, 100vw"
@@ -506,7 +506,7 @@ function TexasBanner() {
             Local roots. National reach.
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-navy-100">
-            Headquartered in El Campo, we work with owner-led businesses across
+            Headquartered in Celina, we work with owner-led businesses across
             Texas and beyond — on-site where it helps, remote where it&apos;s
             faster.
           </p>

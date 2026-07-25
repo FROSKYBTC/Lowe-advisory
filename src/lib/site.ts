@@ -35,14 +35,14 @@ export const site = {
     "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2nvRdu3yjBWEH_WIS9nSTuvrkNDnPeZJFs-0RgDHMwmtTDhaBvJwg6fqSe--4MRud3mPWWdNvg",
 
   /** ✅ Shown in footer + contact page. */
-  location: "1301 N Mechanic St, El Campo, TX 77437",
+  location: "207 S Oklahoma Dr, Celina, TX 75009",
   /** Google Maps link for the address above. */
-  mapUrl: "https://www.google.com/maps/search/?api=1&query=1301+N+Mechanic+St+El+Campo+TX+77437",
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=207+S+Oklahoma+Dr+Celina+TX+75009",
 
   /** ✅ Set — phone shown publicly. tel: links use the digits-only form. */
-  phone: "+1(324)888-6889",
+  phone: "+1 (904) 666-3233",
   /** Machine-readable tel: link (digits only). */
-  phoneHref: "tel:+13248886889",
+  phoneHref: "tel:+19046663233",
 
   /** ⚙️ EDIT ME — founded year for the footer + about. */
   foundedYear: 2024,
