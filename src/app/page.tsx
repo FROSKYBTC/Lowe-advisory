@@ -16,6 +16,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <AdvisoryMoments />
       <StatsStrip />
       <InflectionPoints />
       <ValueProps />
@@ -30,76 +31,89 @@ export default function HomePage() {
 /* ───────────────────────── Hero ───────────────────────── */
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-navy-50 via-white to-white">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-60"
-        style={{
-          backgroundImage:
-            "radial-gradient(60rem 30rem at 80% -10%, rgba(217,162,62,0.10), transparent 60%), radial-gradient(50rem 28rem at 0% 10%, rgba(45,78,135,0.08), transparent 55%)",
-        }}
-      />
-      <Container className="relative py-16 sm:py-20 lg:py-28">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_.92fr] lg:gap-16">
-          <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-navy-200 bg-white/80 px-4 py-1.5 text-xs font-medium text-navy-700 shadow-sm">
-            <Icon name="sparkles" size={14} className="text-amber-500" />
-            {site.tagline}
-          </span>
+    <section className="overflow-hidden border-b border-ink-100 bg-[#fbfaf7]">
+      <div className="mx-auto grid w-full max-w-[90rem] lg:min-h-[40rem] lg:grid-cols-[.9fr_1.1fr]">
+        <div className="flex items-center px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-14 xl:px-20">
+          <div className="max-w-[39rem]">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-600 sm:text-sm">
+              {site.tagline}
+            </p>
 
-          <h1 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-tight text-navy-950 sm:text-5xl lg:text-[4.1rem]">
-            Your business outgrew the old way of running it.
-            <span className="block text-amber-500">Now build what&apos;s next.</span>
-          </h1>
+            <h1 className="mt-6 text-4xl font-semibold leading-[1.04] tracking-tight text-navy-950 sm:text-5xl lg:text-[3.55rem] xl:text-[3.75rem]">
+              Your business outgrew the old way of running it.
+              <span className="mt-2 block text-amber-500">
+                Now build what&apos;s next.
+              </span>
+            </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-600">
-            Lowe Advisory helps owner-led businesses turn growth friction into a
-            focused plan — so revenue, margins, and leadership capacity can move
-            together.
-          </p>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-600 lg:text-[1.05rem]">
+              Lowe Advisory helps owner-led businesses turn growth friction into a
+              focused plan — so revenue, margins, and leadership capacity can move
+              together.
+            </p>
 
-          <div className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <Button href={site.bookingUrl || "/contact"} size="lg" variant="secondary">
-              Start with a Strategy Call
-              <Icon name="arrow-right" size={18} />
-            </Button>
-            <Button href="/services" size="lg" variant="outline">
-              Explore Services
-            </Button>
-          </div>
-
-          <p className="mt-5 text-sm text-ink-500">A focused 30-minute conversation. No pitch deck, no pressure.</p>
-          </div>
-
-          <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:justify-self-end">
-            <div className="absolute -inset-4 rounded-[2rem] bg-amber-200/25 blur-2xl" aria-hidden />
-            <div className="relative overflow-hidden rounded-2xl border border-navy-800 bg-navy-950 p-6 shadow-2xl sm:p-8">
-              <div className="flex items-center justify-between border-b border-navy-800 pb-5">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">The first 90 days</p>
-                  <p className="mt-1 font-serif text-xl font-semibold text-white">Clarity before complexity</p>
-                </div>
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 text-navy-950"><Icon name="compass" size={20} /></span>
-              </div>
-              <div className="space-y-5 py-6">
-                {[
-                  ["01", "Find the constraint", "Identify what is really slowing growth or draining margin."],
-                  ["02", "Choose the few moves", "Build a sequence your team can execute with confidence."],
-                  ["03", "Create operating rhythm", "Put owners, measures, and momentum behind the plan."],
-                ].map(([number, title, copy]) => (
-                  <div key={number} className="flex gap-4">
-                    <span className="font-serif text-xl font-semibold text-amber-400">{number}</span>
-                    <div><h2 className="font-sans text-sm font-semibold text-white">{title}</h2><p className="mt-1 text-sm leading-relaxed text-navy-300">{copy}</p></div>
-                  </div>
-                ))}
-              </div>
-              <div className="rounded-lg border border-navy-700 bg-white/5 px-4 py-3 text-sm text-navy-200">
-                Direct principal involvement from diagnosis through execution.
-              </div>
+            <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+              <Button
+                href={site.bookingUrl || "/contact"}
+                size="lg"
+                variant="secondary"
+                className="whitespace-nowrap"
+              >
+                Start with a Strategy Call
+                <Icon name="arrow-right" size={18} />
+              </Button>
+              <Button
+                href="/services"
+                size="lg"
+                variant="outline"
+                className="whitespace-nowrap"
+              >
+                Explore Services
+              </Button>
             </div>
+
           </div>
         </div>
-      </Container>
+
+        <div className="relative min-h-[27rem] border-t border-ink-100 lg:min-h-full lg:border-l lg:border-t-0">
+          <Image
+            src="/images/home-hero-strategy-presentation.jpg"
+            alt="Anastasia Lowe leading a strategy presentation for business owners"
+            fill
+            priority
+            sizes="(min-width: 1440px) 50rem, (min-width: 1024px) 57vw, 100vw"
+            className="object-cover object-center"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────── Meeting moments ───────────────── */
+function AdvisoryMoments() {
+  return (
+    <section aria-label="Lowe Advisory working sessions" className="bg-white py-4 sm:py-5">
+      <div className="mx-auto grid w-full max-w-[90rem] gap-4 px-4 sm:px-5 lg:grid-cols-2">
+        <figure className="relative aspect-[16/9] overflow-hidden bg-navy-950">
+          <Image
+            src="/images/home-workshop-whiteboard.jpg"
+            alt="Anastasia Lowe facilitating a collaborative whiteboard planning session"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover object-center"
+          />
+        </figure>
+        <figure className="relative aspect-[16/9] overflow-hidden bg-navy-950">
+          <Image
+            src="/images/home-advisory-working-session.jpg"
+            alt="Anastasia Lowe reviewing an operating plan with a business owner"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover object-center"
+          />
+        </figure>
+      </div>
     </section>
   );
 }

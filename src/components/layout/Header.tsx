@@ -15,7 +15,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-ink-100 bg-white/85 backdrop-blur-md">
-      <Container className="flex h-16 items-center justify-between md:h-20">
+      <Container className="flex h-16 max-w-[85rem] items-center justify-between md:h-20">
         {/* Logo */}
         <Link href="/" className="flex items-center" aria-label={site.name}>
           <Logo height={34} priority />
