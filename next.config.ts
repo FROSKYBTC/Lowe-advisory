@@ -34,6 +34,12 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  images: {
+    localPatterns: [
+      { pathname: "/images/**", search: "" },
+      { pathname: "/images/home-about.jpg", search: "?v=20260725" },
+    ],
+  },
   async headers() {
     return [
       {
