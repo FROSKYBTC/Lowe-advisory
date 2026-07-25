@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <AdvisoryMoments />
+      <ClarityToExecution />
       <StatsStrip />
       <InflectionPoints />
       <ValueProps />
@@ -32,27 +32,48 @@ export default function HomePage() {
 function Hero() {
   return (
     <section className="overflow-hidden border-b border-ink-100 bg-[#fbfaf7]">
-      <div className="mx-auto grid w-full max-w-[90rem] lg:min-h-[40rem] lg:grid-cols-[.9fr_1.1fr]">
-        <div className="flex items-center px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-14 xl:px-20">
+      <div className="relative mx-auto w-full max-w-[90rem] lg:min-h-[32.5rem]">
+        <div className="absolute inset-y-0 right-0 hidden w-[65%] lg:block">
+          <Image
+            src="/images/home-hero-strategy-presentation.jpg"
+            alt="Anastasia Lowe leading a strategy presentation for business owners"
+            fill
+            priority
+            sizes="(min-width: 1440px) 59rem, 65vw"
+            className="object-cover object-center"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, #fbfaf7 0%, rgba(251, 250, 247, 0.98) 18%, rgba(251, 250, 247, 0.66) 35%, rgba(251, 250, 247, 0) 55%)",
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 flex items-center px-5 py-16 sm:px-8 sm:py-20 lg:min-h-[32.5rem] lg:w-[52%] lg:px-12 lg:py-8 xl:pl-20 xl:pr-6">
           <div className="max-w-[39rem]">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-600 sm:text-sm">
               {site.tagline}
             </p>
 
-            <h1 className="mt-6 text-4xl font-semibold leading-[1.04] tracking-tight text-navy-950 sm:text-5xl lg:text-[3.55rem] xl:text-[3.75rem]">
-              Your business outgrew the old way of running it.
-              <span className="mt-2 block text-amber-500">
+            <h1 className="mt-5 text-4xl font-semibold leading-[1.04] tracking-tight text-navy-950 sm:text-5xl lg:text-[3.2rem] xl:text-[3.35rem]">
+              <span className="lg:block">Your business</span>{" "}
+              <span className="lg:block">outgrew the old</span>{" "}
+              <span className="lg:block">way of running it.</span>
+              <span className="mt-2 block text-amber-500 xl:whitespace-nowrap">
                 Now build what&apos;s next.
               </span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-600 lg:text-[1.05rem]">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-600 lg:text-[1.05rem]">
               Lowe Advisory helps owner-led businesses turn growth friction into a
               focused plan — so revenue, margins, and leadership capacity can move
               together.
             </p>
 
-            <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+            <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
               <Button
                 href={site.bookingUrl || "/contact"}
                 size="lg"
@@ -75,13 +96,13 @@ function Hero() {
           </div>
         </div>
 
-        <div className="relative min-h-[27rem] border-t border-ink-100 lg:min-h-full lg:border-l lg:border-t-0">
+        <div className="relative min-h-[27rem] border-t border-ink-100 lg:hidden">
           <Image
             src="/images/home-hero-strategy-presentation.jpg"
             alt="Anastasia Lowe leading a strategy presentation for business owners"
             fill
             priority
-            sizes="(min-width: 1440px) 50rem, (min-width: 1024px) 57vw, 100vw"
+            sizes="100vw"
             className="object-cover object-center"
           />
         </div>
@@ -90,29 +111,73 @@ function Hero() {
   );
 }
 
-/* ───────────────── Meeting moments ───────────────── */
-function AdvisoryMoments() {
+/* ─────────────── From clarity to execution ─────────────── */
+function ClarityToExecution() {
+  const steps = [
+    {
+      title: "Align the priorities",
+      description:
+        "Surface the constraint and align on the few moves that will move revenue, margins, and capacity.",
+      image: "/images/home-priorities-presentation.jpg",
+      alt: "Anastasia Lowe aligning business priorities during a leadership presentation",
+    },
+    {
+      title: "Build the plan",
+      description:
+        "Translate strategy into a simple, accountable operating plan your team can execute with confidence.",
+      image: "/images/home-workshop-whiteboard.jpg",
+      alt: "Anastasia Lowe building an operating plan with business leaders at a whiteboard",
+    },
+    {
+      title: "Lead the change",
+      description:
+        "Establish rhythm, reinforce progress, and remove barriers so results compound.",
+      image: "/images/home-advisory-working-session.jpg",
+      alt: "Anastasia Lowe leading a focused advisory working session",
+    },
+  ];
+
   return (
-    <section aria-label="Lowe Advisory working sessions" className="bg-white py-4 sm:py-5">
-      <div className="mx-auto grid w-full max-w-[90rem] gap-4 px-4 sm:px-5 lg:grid-cols-2">
-        <figure className="relative aspect-[16/9] overflow-hidden bg-navy-950">
-          <Image
-            src="/images/home-workshop-whiteboard.jpg"
-            alt="Anastasia Lowe facilitating a collaborative whiteboard planning session"
-            fill
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover object-center"
-          />
-        </figure>
-        <figure className="relative aspect-[16/9] overflow-hidden bg-navy-950">
-          <Image
-            src="/images/home-advisory-working-session.jpg"
-            alt="Anastasia Lowe reviewing an operating plan with a business owner"
-            fill
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover object-center"
-          />
-        </figure>
+    <section aria-labelledby="clarity-heading" className="bg-white py-8 sm:py-10">
+      <div className="mx-auto w-full max-w-[90rem] px-5 sm:px-8 lg:px-12 xl:px-20">
+        <div className="flex items-center gap-5">
+          <h2
+            id="clarity-heading"
+            className="shrink-0 font-serif text-3xl font-medium tracking-tight text-navy-950 sm:text-4xl"
+          >
+            From clarity to execution
+          </h2>
+          <span aria-hidden="true" className="hidden h-px flex-1 bg-amber-400 sm:block" />
+        </div>
+
+        <div className="mt-5 grid lg:grid-cols-3">
+          {steps.map((step, index) => (
+            <article
+              key={step.title}
+              className={
+                index === 0
+                  ? "pb-9 lg:pb-0 lg:pr-8"
+                  : "border-t border-amber-300 py-9 lg:border-l lg:border-t-0 lg:px-8 lg:py-0"
+              }
+            >
+              <div className="relative aspect-[1.7/1] overflow-hidden bg-navy-950">
+                <Image
+                  src={step.image}
+                  alt={step.alt}
+                  fill
+                  sizes="(min-width: 1024px) 30vw, 100vw"
+                  className="object-cover object-center"
+                />
+              </div>
+              <h3 className="mt-4 font-serif text-2xl font-semibold tracking-tight text-navy-950 sm:text-[1.65rem]">
+                {step.title}
+              </h3>
+              <p className="mt-2 max-w-md text-sm leading-relaxed text-ink-600 sm:text-[0.95rem]">
+                {step.description}
+              </p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
