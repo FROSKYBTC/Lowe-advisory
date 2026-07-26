@@ -157,14 +157,8 @@ body:has(.home-option-three-palette) .site-header {
   background: rgba(7, 21, 44, 0.94);
 }
 
-body:has(.home-option-three-palette) .site-header-logo .brand-logo__primary,
-.brand-logo--solid .brand-logo__primary {
-  color: white;
-}
-
-body:has(.home-option-three-palette) .site-header-logo .brand-logo__secondary,
-.brand-logo--solid .brand-logo__secondary {
-  color: var(--color-amber-300);
+body:has(.home-option-three-palette) .site-header-logo {
+  filter: grayscale(1) brightness(0) invert(1);
 }
 
 body:has(.home-option-three-palette) .site-header-nav-link {
