@@ -1,26 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <rect width="48" height="48" rx="11" fill="#0d1830"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#ffffff"/>
   <path
-    d="M11 10V37H23"
-    fill="none"
-    stroke="#d9a23e"
-    stroke-width="5.5"
-    stroke-linecap="square"
-    stroke-linejoin="round"
+    d="M6 45 32 7l26 38H47.5L32 23 16.5 45Z"
+    fill="#082a53"
   />
   <path
-    d="M20 38L30.5 10L42 38"
-    fill="none"
-    stroke="#f8fafc"
-    stroke-width="5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  />
-  <path
-    d="M24 29.5H37.5"
-    fill="none"
-    stroke="#5e87bd"
-    stroke-width="4"
-    stroke-linecap="round"
+    d="M15 53 32 33l17 20h-9L32 43l-8 10Z"
+    fill="#71899b"
   />
 </svg>
