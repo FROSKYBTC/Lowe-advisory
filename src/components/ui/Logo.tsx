@@ -1,23 +1,19 @@
 import Image from "next/image";
 
 /**
- * Lowe Advisory — Logo
+ * Lowe Advisory — Adobe Option 4
  *
- * Uses the official horizontal logo lockup (icon + wordmark combined):
- *   - logo-horizontal-transparent.png  → transparent background (header)
- *   - logo-horizontal-solid.png        → solid background (use on dark/colored)
- *
- * The transparent PNG reads correctly on both light and dark backgrounds
- * because the wordmark is navy/gray, not pure black or white.
+ * The approved Adobe concept is supplied as a square presentation board. The
+ * emblem is framed from that original artwork, while the wordmark is rendered
+ * as live text so it remains sharp and readable in responsive navigation.
  */
 
-const LOGO_TRANSPARENT = "/images/logo/logo-horizontal-transparent.png";
-const LOGO_SOLID = "/images/logo/logo-horizontal-solid.png";
+const OPTION_FOUR_ARTWORK = "/images/logo/logo-option-4.png";
 
 type LogoProps = {
-  /** Height of the logo in px. Width scales automatically (aspect ratio preserved). */
+  /** Height of the complete lockup in px. */
   height?: number;
-  /** "transparent" = transparent bg (header). "solid" = solid bg (dark sections). */
+  /** Use the solid variant on dark backgrounds. */
   variant?: "transparent" | "solid";
   className?: string;
   priority?: boolean;
@@ -29,28 +25,46 @@ export function Logo({
   className,
   priority = false,
 }: LogoProps) {
-  const src = variant === "solid" ? LOGO_SOLID : LOGO_TRANSPARENT;
-  // Source is 1344×326 → ratio ≈ 4.12:1 (transparent) / 1536×1024 → 1.5:1 (solid)
-  const aspect = variant === "solid" ? 1536 / 1024 : 1344 / 326;
-  const width = Math.round(height * aspect);
-
   return (
-    <Image
-      src={src}
-      alt="Lowe Advisory"
-      width={width}
-      height={height}
-      priority={priority}
-      className={`inline-block h-auto ${className ?? ""}`}
-      style={{ height }}
-    />
+    <span
+      className={`brand-logo brand-logo--${variant} inline-flex items-center gap-[0.34em] ${className ?? ""}`}
+      style={{ height, fontSize: height }}
+      role="img"
+      aria-label="Lowe Advisory"
+    >
+      <span
+        aria-hidden="true"
+        className="relative aspect-square h-full shrink-0 overflow-hidden rounded-[0.22em] bg-white shadow-[0_0_0_1px_rgba(13,24,48,0.08)]"
+      >
+        <Image
+          src={OPTION_FOUR_ARTWORK}
+          alt=""
+          width={1536}
+          height={1536}
+          priority={priority}
+          sizes={`${height}px`}
+          className="absolute max-w-none"
+          style={{
+            width: "310%",
+            height: "310%",
+            left: "-105%",
+            top: "-69%",
+          }}
+        />
+      </span>
+
+      <span aria-hidden="true" className="flex min-w-0 flex-col justify-center">
+        <span className="brand-logo__primary font-serif text-[0.68em] font-semibold leading-[0.72] tracking-[0.025em] text-navy-950">
+          LOWE
+        </span>
+        <span className="brand-logo__secondary mt-[0.3em] text-[0.215em] font-semibold leading-none tracking-[0.34em] text-navy-600">
+          ADVISORY
+        </span>
+      </span>
+    </span>
   );
 }
 
-/**
- * Compact icon-only mark for tight spaces (favicon-adjacent, mobile).
- * Falls back to the solid logo scaled down.
- */
 export function LogoMark({
   size = 36,
   className,
@@ -59,12 +73,26 @@ export function LogoMark({
   className?: string;
 }) {
   return (
-    <Image
-      src="/images/logo/logo-horizontal-solid.png"
-      alt="Lowe Advisory"
-      width={size}
-      height={size}
-      className={`inline-block ${className ?? ""}`}
-    />
+    <span
+      className={`relative inline-block shrink-0 overflow-hidden rounded-[22%] bg-white shadow-[0_0_0_1px_rgba(13,24,48,0.08)] ${className ?? ""}`}
+      style={{ width: size, height: size }}
+      role="img"
+      aria-label="Lowe Advisory"
+    >
+      <Image
+        src={OPTION_FOUR_ARTWORK}
+        alt=""
+        width={1536}
+        height={1536}
+        sizes={`${size}px`}
+        className="absolute max-w-none"
+        style={{
+          width: "310%",
+          height: "310%",
+          left: "-105%",
+          top: "-69%",
+        }}
+      />
+    </span>
   );
 }

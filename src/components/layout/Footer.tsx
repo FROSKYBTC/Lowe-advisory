@@ -19,8 +19,8 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Logo
               height={34}
-              variant="transparent"
-              className="brightness-0 invert opacity-95"
+              variant="solid"
+              className="opacity-95"
             />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-navy-300">
               {site.name}. {site.tagline}. Helping owners turn complexity into
